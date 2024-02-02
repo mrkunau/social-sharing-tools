@@ -1,0 +1,57 @@
+.sstools-metabox-tabs {
+	border: none;
+	box-shadow: none;
+}
+
+.sstools-metabox-tabs .ui-tabs-nav li {
+	display: inline;
+	margin: 5px 0;
+	padding: 5px;
+}
+
+.sstools-metabox-tabs .ui-tabs-nav {
+	background: #eaeaea;
+	padding: 3px 10px 0;
+	margin: 0;
+	overflow: hidden;
+	zoom: 1;
+	line-height: 1em;
+	box-shadow: inset 0 -1px 0 0 #d5d5d5;
+	border: none !important;
+	border-radius: 0px !important;
+}
+
+.sstools-metabox-tabs .ui-tabs-nav li {
+	float: left;
+	padding: 0;
+	margin: 0 5px 0 0;
+}
+
+.sstools-metabox-tabs .ui-tabs-nav li a {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	border: 1px solid #d5d5d5;
+	border-bottom: 0;
+	float: left;
+	padding: 9px 9px;
+	text-decoration: none;
+	color: #555;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	box-shadow: inset 0 1px 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.sstools-metabox-tabs .ui-tabs-nav li.ui-state-active {
+}
+
+.sstools-metabox-tabs .ui-tabs-nav li.ui-state-active a {
+	background-color: #F8F8F8;
+	color: #555;
+}
+
+.ui-tabs .ui-widget-content {
+	background: #F8F8F8;
+	padding: 0;
+	margin: 0;
+}
