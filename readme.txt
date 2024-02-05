@@ -3,7 +3,7 @@ Contributors: a3rev Software team
 Tags: wordpress, social share
 Requires at least: 6.4
 Tested up to: 6.4.3
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 

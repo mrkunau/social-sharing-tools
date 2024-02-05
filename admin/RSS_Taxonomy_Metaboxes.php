@@ -101,6 +101,18 @@ class RSS_Taxonomy_Metaboxes extends \A3Rev\SocialShareTools\RSS_Taxonomy_Meta{
 		if ( ! current_user_can( 'manage_options' ) )
         	return;
 
+        if ( isset( $_POST['_sstools_turnon_ogmetas'] ) ) {
+			update_option( '_sstools_turnon_ogmetas', 'yes');
+		}else{
+			delete_option( '_sstools_turnon_ogmetas');
+		}
+
+		if ( isset( $_POST['_sstools_turnon_twittermetas'] ) ) {
+			update_option( '_sstools_turnon_twittermetas', 'yes');
+		}else{
+			delete_option( '_sstools_turnon_twittermetas');
+		}
+
         do_action( 'rss_save_compare_data', $term_id );
 
 		$default_meta_boxes = \A3Rev\SocialShareTools\RSS_Taxonomy_Meta::$default_meta_boxes;

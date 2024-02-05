@@ -21,6 +21,8 @@ class RSS_Facebook extends \A3Rev\SocialShareTools\RSS_OpenGraph {
 			add_action( 'wp_head', array( $this, 'og_title' ), 0 );//10
 			add_action( 'wp_head', array( $this, 'description' ), 0 );//11
 			add_action( 'wp_head', array( $this, 'image' ), 0 );//30
+			add_action( 'wp_head', array( $this, 'publish_date_linkedin' ), 1 );//19
+			add_action( 'wp_head', array( $this, 'sst_comment_end' ), 0 ); //0
 		}else{
 			add_action( 'wp_head', array( $this, 'sst_comment_start' ), 1 ); //0
 			add_action( 'wp_head', array( $this, 'locale' ), 1 );
@@ -37,14 +39,28 @@ class RSS_Facebook extends \A3Rev\SocialShareTools\RSS_OpenGraph {
 				add_action( 'wp_head', array( $this, 'publish_date' ), 1 );//19
 			}
 			add_action( 'wp_head', array( $this, 'image' ), 1 );//30
+			add_action( 'wp_head', array( $this, 'publish_date_linkedin' ), 1 );//19
+			add_action( 'wp_head', array( $this, 'sst_comment_end' ), 1 ); //0
 		}
 
-		add_action( 'wp_head', array( $this, 'publish_date_linkedin' ), 1 );//19
+		
 
 	}
 
 	public function sst_comment_start() {
+		$_sstools_turnon_ogmetas 			= get_option( '_sstools_turnon_ogmetas', 'no' );
+		if( $_sstools_turnon_ogmetas != 'yes' ){
+			return;
+		}
 		echo '<!-- The og:meta tags below are created by a3rev Social Share Tools plugin version '.SOCIALSHARETOOLS_VERSION.' - https://a3rev.com/shop/social-share-tools/ -->';
+	}
+
+	public function sst_comment_end() {
+		$_sstools_turnon_twittermetas 		= get_option( '_sstools_turnon_twittermetas', 'no' );
+		if( $_sstools_turnon_twittermetas == 'yes' ){
+			return;
+		}
+		echo '<!-- /og:meta Social Share Tools -->';
 	}
 
 	public function wpseo_space( $str ){

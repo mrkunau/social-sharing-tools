@@ -51,29 +51,34 @@ class Frontend extends \A3Rev\SocialShareTools\RSS_OpenGraph {
 
 	public function set_oembed_data( $data, $post, $width, $height ) {
 
-		$opengraph_title   = \A3Rev\SocialShareTools\RSS_Meta::get_value( 'opengraph-title', $post->ID );
-	    if ( ! empty( $opengraph_title ) ) {
-	        $data['title'] = $opengraph_title;
-	    }
+		$_sstools_turnon_ogmetas 		= get_option( '_sstools_turnon_ogmetas', 'no' );
+		
+		if( $_sstools_turnon_ogmetas == 'yes' ){
 
-	    $opengraph_description   = \A3Rev\SocialShareTools\RSS_Meta::get_value( 'opengraph-description', $post->ID );
-	    if ( ! empty( $opengraph_description ) ) {
-	        $data['description'] = $opengraph_description;
-	    }
+			$opengraph_title   = \A3Rev\SocialShareTools\RSS_Meta::get_value( 'opengraph-title', $post->ID );
+		    if ( ! empty( $opengraph_title ) ) {
+		        $data['title'] = $opengraph_title;
+		    }
 
-	    $image_url = \A3Rev\SocialShareTools\RSS_Meta::get_value( 'opengraph-image', $post->ID );
-	    
-	    if ( ! empty( $image_url ) ) {
-	        $data['thumbnail_url'] = $image_url;
-	    }
+		    $opengraph_description   = \A3Rev\SocialShareTools\RSS_Meta::get_value( 'opengraph-description', $post->ID );
+		    if ( ! empty( $opengraph_description ) ) {
+		        $data['description'] = $opengraph_description;
+		    }
 
-	    $thumbnail_id = \A3Rev\SocialShareTools\RSS_Meta::get_value( 'opengraph-image_attachment_id', $post->ID );
-	   
-		if ( $thumbnail_id && (int)$thumbnail_id > 0 ) {
-			list( $thumbnail_url, $thumbnail_width, $thumbnail_height ) = wp_get_attachment_image_src( $thumbnail_id, array( $width, 99999 ) );
-			$data['thumbnail_url']                                      = $thumbnail_url;
-			$data['thumbnail_width']                                    = $thumbnail_width;
-			$data['thumbnail_height']                                   = $thumbnail_height;
+		    $image_url = \A3Rev\SocialShareTools\RSS_Meta::get_value( 'opengraph-image', $post->ID );
+		    
+		    if ( ! empty( $image_url ) ) {
+		        $data['thumbnail_url'] = $image_url;
+		    }
+
+		    $thumbnail_id = \A3Rev\SocialShareTools\RSS_Meta::get_value( 'opengraph-image_attachment_id', $post->ID );
+		   
+			if ( $thumbnail_id && (int)$thumbnail_id > 0 ) {
+				list( $thumbnail_url, $thumbnail_width, $thumbnail_height ) = wp_get_attachment_image_src( $thumbnail_id, array( $width, 99999 ) );
+				$data['thumbnail_url']                                      = $thumbnail_url;
+				$data['thumbnail_width']                                    = $thumbnail_width;
+				$data['thumbnail_height']                                   = $thumbnail_height;
+			}
 		}
 
 	    return $data;
@@ -100,13 +105,18 @@ class Frontend extends \A3Rev\SocialShareTools\RSS_OpenGraph {
 		}
 		add_action( 'wp_head', array( $this, 'publisher' ), 1 );
 
-		$rss_facebook = new \A3Rev\SocialShareTools\RSS_Facebook( $this->options );
-
-		if ( $this->options['twitter'] === 'yes' ) {
-			$rss_twitter = new \A3Rev\SocialShareTools\RSS_Twitter( $this->options );
+		$_sstools_turnon_ogmetas 		= get_option( '_sstools_turnon_ogmetas', 'no' );
+		if( $_sstools_turnon_ogmetas == 'yes' ){
+			$rss_facebook = new \A3Rev\SocialShareTools\RSS_Facebook( $this->options );
 		}
 
-		
+		$_sstools_turnon_twittermetas 		= get_option( '_sstools_turnon_twittermetas', 'no' );
+		if( $_sstools_turnon_twittermetas == 'yes' ){
+			if ( $this->options['twitter'] === 'yes' ) {
+				$rss_twitter = new \A3Rev\SocialShareTools\RSS_Twitter( $this->options );
+			}
+		}
+
 	}
 
 	public function publisher() {

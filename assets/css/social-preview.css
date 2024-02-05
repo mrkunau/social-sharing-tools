@@ -1082,5 +1082,51 @@
 	font-weight: bold;
 }
 
-@media only screen and (min-width:783px) {
+li.wf-tab-settings > a{
+	display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    font-weight: bold;
 }
+
+#stPreview label {
+    margin-top: 0em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    display: block;
+    font-size: 13px;
+}
+
+#stPreview .sstools-settings-control{
+	margin-top: 1em;
+}
+#stPreview .sstools-settings-control .sstools-settings-control-row{
+	display: flex;
+    font-weight: 600;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 1em;
+}
+#stPreview .sstools-settings-control .sstools-settings-control-row input{
+	margin: 0;
+}
+#stPreview .sstools-settings-control .sstools-settings-control-row label{
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

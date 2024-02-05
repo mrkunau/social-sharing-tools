@@ -28,6 +28,7 @@ class RSS_Twitter extends \A3Rev\SocialShareTools\RSS_OpenGraph {
 		
 		$this->options = $options;
 		
+		add_action( 'wp_head', array( $this, 'sst_comment_start' ), 1 );
 		add_action( 'wp_head', array( $this, 'twitter' ), 1 );//40
 
 		if( class_exists('WPSEO_Twitter') && !is_admin() ){
@@ -41,7 +42,19 @@ class RSS_Twitter extends \A3Rev\SocialShareTools\RSS_OpenGraph {
 		add_action( 'wp_head', array( $this, 'sst_comment_end' ), 1 );
 	}
 
+	public function sst_comment_start() {
+		$_sstools_turnon_ogmetas 			= get_option( '_sstools_turnon_ogmetas', 'no' );
+		if( $_sstools_turnon_ogmetas == 'yes' ){
+			return;
+		}
+		echo '<!-- The og:meta tags below are created by a3rev Social Share Tools plugin version '.SOCIALSHARETOOLS_VERSION.' - https://a3rev.com/shop/social-share-tools/ -->';
+	}
+
 	public function sst_comment_end() {
+		$_sstools_turnon_twittermetas 		= get_option( '_sstools_turnon_twittermetas', 'no' );
+		if( $_sstools_turnon_twittermetas != 'yes' ){
+			return;
+		}
 		echo '<!-- /og:meta Social Share Tools -->';
 	}
 

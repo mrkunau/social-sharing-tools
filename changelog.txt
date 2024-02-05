@@ -1,5 +1,11 @@
 *** Social Sharing Tools Changelog ***
 
+= 1.1.0 - 2024/02/05 =
+* This feature release adds a Settings Tab to the meta and changes the default add og tag setting to OFF.
+* Feature - added a Settings tab to the Social Share meta.
+* Tweak - Added option ON/OFF Open Graph Markup ( default is OFF)
+* Tweak - Added option ON/OFF Twitter Card ( default is OFF)
+
 = 1.0.0 - 2024/02/02 =
 * First Release version
 * Created a Github Public Repo

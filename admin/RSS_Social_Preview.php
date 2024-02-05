@@ -77,6 +77,18 @@ class RSS_Social_Preview {
 			$liDebugUrl = 'https://www.linkedin.com/post-inspector/inspect/'.urlencode($debugUrl);
 		}
 
+		$_sstools_turnon_ogmetas 		= get_option( '_sstools_turnon_ogmetas', 'no' );
+		$_sstools_turnon_ogmetas_checked = '';
+		if( $_sstools_turnon_ogmetas == 'yes' ){
+			$_sstools_turnon_ogmetas_checked = 'checked="checked" ';
+		}
+
+		$_sstools_turnon_twittermetas 		= get_option( '_sstools_turnon_twittermetas', 'no' );
+		$_sstools_turnon_twittermetas_checked = '';
+		if( $_sstools_turnon_twittermetas == 'yes' ){
+			$_sstools_turnon_twittermetas_checked = 'checked="checked" ';
+		}
+
 		?>
 		<style>#rss_meta .inside{opacity: 0;}</style>
 		<div style="clear: both;"></div>
@@ -89,8 +101,27 @@ class RSS_Social_Preview {
 				<li class="wf-tab-linkedin"><a href="#wf-tab-linkedin" title="<?php esc_attr_e( 'Linkedin', 'social-share-tools' );?>"><i class="linkedin" aria-hidden="true"><?php echo $social_share_tools_icons['linkedin'];?></i></a></li>
 				<li class="wf-tab-discord"><a href="#wf-tab-discord" title="<?php esc_attr_e( 'Discord', 'social-share-tools' );?>"><i class="discord" aria-hidden="true"><?php echo $social_share_tools_icons['discord'];?></i></a></li>
 				<li class="wf-tab-twitter"><a href="#wf-tab-twitter" title="<?php esc_attr_e( 'Twitter', 'social-share-tools' );?>"><i class="twitter-square"><?php echo $social_share_tools_icons['twitter-square'];?></i></a></li>
-
+				<li class="wf-tab-settings"><a href="#wf-tab-settings" title="<?php esc_attr_e( 'Settings', 'social-share-tools' );?>"><i class="settings"><?php echo $social_share_tools_icons['settings'];?></i><?php esc_attr_e( 'Settings', 'social-share-tools' );?></a></li>
 			</ul>
+
+			<div id="wf-tab-settings" class="wf-tab-content">
+				<div style="clear: both;"></div>
+				<div id="stPreview">
+					<div class="editable-preview-form">
+						<label><?php esc_attr_e( 'Open Graph Markup.', 'social-share-tools' ); ?></label>
+						<span><?php echo 'For enhanced social sharing to work when a link is shared on social media the site must have Open Graph tags in the header. Our plugin can adds these, if they don\'t already exist. If so you can enable the tags below. <a href="https://docs.a3rev.com/social-sharing-tools/#Settings-Tab" target="_blank">Click here</a> to see how to check if the og tags are already on your site.';?></span>
+						<div class="sstools-settings-control">
+							<div class="sstools-settings-control-row">
+								<input <?php echo $_sstools_turnon_ogmetas_checked; ?>type="checkbox" name="_sstools_turnon_ogmetas" id="_sstools_turnon_ogmetas" value="yes" /> <label for="_sstools_turnon_ogmetas"><?php esc_attr_e( 'Add Open Graph Markup', 'social-share-tools' ); ?></label>
+							</div>
+							<div class="sstools-settings-control-row">
+								<input <?php echo $_sstools_turnon_twittermetas_checked; ?>type="checkbox" name="_sstools_turnon_twittermetas" id="_sstools_turnon_twittermetas" value="yes" /> <label for="_sstools_turnon_twittermetas"><?php esc_attr_e( 'Add Twitter Card', 'social-share-tools' ); ?></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
 			
 			<div id="wf-tab-facebook" class="wf-tab-content">
 

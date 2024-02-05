@@ -121,15 +121,12 @@ class RSS_Metaboxes extends \A3Rev\SocialShareTools\RSS_Meta {
 			$twitter_image_default
 		);
 
-		?>
-		
-		<?php
-    
 	}
 
 	public static function save_postdata( $post_id = '' ) {
 
 	    global $post;
+
 
 	    if ( isset($_POST['post_type']) && 'page' == $_POST['post_type'] ) {
 	        if ( ! current_user_can( 'edit_page', $post_id ) ) {
@@ -171,6 +168,19 @@ class RSS_Metaboxes extends \A3Rev\SocialShareTools\RSS_Meta {
 			// Non-existent post.
 			return false;
 		}
+
+		if ( isset( $_POST['_sstools_turnon_ogmetas'] ) ) {
+			update_option( '_sstools_turnon_ogmetas', 'yes');
+		}else{
+			delete_option( '_sstools_turnon_ogmetas');
+		}
+
+		if ( isset( $_POST['_sstools_turnon_twittermetas'] ) ) {
+			update_option( '_sstools_turnon_twittermetas', 'yes');
+		}else{
+			delete_option( '_sstools_turnon_twittermetas');
+		}
+
 
 		do_action( 'rss_save_compare_data', $post );
 
